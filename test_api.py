@@ -20,3 +20,16 @@ print(response.text)
 #    "data": "RouteOne: GET"
 # }
 #
+
+# Issue a POST Request to RouteOne
+response = requests.post(BASE_URL)
+
+# Check response is as expected
+print(response.text)
+
+# Expected response
+#
+# {
+#    "data": "RouteOne: POST"
+# }
+#
