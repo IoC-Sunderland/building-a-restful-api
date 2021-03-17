@@ -22,5 +22,34 @@ print(response.text)
 #
 
 # Let's try sending some data to RouteOne
-response = requests.post(BASE_URL, data={"name": "jim", "age": 90, "fav_food": 'crackers'})
+response = requests.post(
+    BASE_URL, data={"name": "jim", "age": 90, "fav_food": 'crackers'})
 print(response.text)
+
+# Expected response
+#
+# {
+#    "name": "jim",
+#    "age": "90",
+#    "fav_food": "crackers"
+# }
+#
+
+# Let's try sending some more data to RouteOne
+response = requests.post(
+    BASE_URL, data={"name": "sue", "age": 45, "fav_food": 'bread'})
+print(response.text)
+
+# Expected response
+
+# {
+#    "name": "jim",
+#    "age": "90",
+#    "fav_food": "crackers"
+# }
+#
+# {
+#    "name": "sue",
+#    "age": "45",
+#    "fav_food": "bread"
+# }

@@ -7,20 +7,18 @@ from flask_restful import Api, Resource, reqparse, abort
 app = Flask(__name__)
 api = Api(app)
 
-# Use names dictionary to store names and other stuff
-names = {}
+people = {}
 
 ## Resources ##
 # Use classes that inherit from Resource to define resources
 # Let's ensure the "RouteOne" resource can handle "GET" requests
-
-
 class RouteOne(Resource):
     def get(self):
         return {"data": "RouteOne: GET"}
-    
+
     def post(self):
-        return request.form
+        people.update(request.form)
+        return people
 
 
 ## API Routing ##
