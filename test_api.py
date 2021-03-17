@@ -21,15 +21,6 @@ print(response.text)
 # }
 #
 
-# Issue a POST Request to RouteOne
-response = requests.post(BASE_URL)
-
-# Check response is as expected
+# Let's try sending some data to RouteOne
+response = requests.post(BASE_URL, data={"name": "jim", "age": 90, "fav_food": 'crackers'})
 print(response.text)
-
-# Expected response
-#
-# {
-#    "data": "RouteOne: POST"
-# }
-#

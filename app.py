@@ -1,11 +1,14 @@
 """A very simple RESTful API example
 """
 
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Api, Resource, reqparse, abort
 
 app = Flask(__name__)
 api = Api(app)
+
+# Use names dictionary to store names and other stuff
+names = {}
 
 ## Resources ##
 # Use classes that inherit from Resource to define resources
@@ -17,7 +20,7 @@ class RouteOne(Resource):
         return {"data": "RouteOne: GET"}
     
     def post(self):
-        return {"data": "RouteOne: POST"}
+        return request.form
 
 
 ## API Routing ##
