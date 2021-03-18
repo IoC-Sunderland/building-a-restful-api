@@ -27,21 +27,28 @@ parser.add_argument(
 
 
 ## Resources ##
-# Use classes that inherit from Resource to define resources
-# Let's ensure the "RouteOne" resource can handle "GET" requests
-class RouteOne(Resource):
+class GetAllPeople(Resource):
     def get(self):
-        return {"data": "RouteOne: GET"}
-
-    def post(self):
-        args = parser.parse_args()
-        people.update(args)
         return people
 
 
+class GetAPerson(Resource):
+    def get(self, name_of_person):
+        return people[name_of_person]
+
+
+class AddPerson(Resource):
+    def post(self, name_of_person):
+        args = parser.parse_args()
+        people[name_of_person] = args
+        return people[name_of_person]
+
+
 ## API Routing ##
-# Now add RouteOne to the api and define the endpoint - in this case it is '/'
-api.add_resource(RouteOne, '/')
+api.add_resource(GetAllPeople, '/')
+api.add_resource(GetAPerson, '/name/<string:name_of_person>')
+api.add_resource(AddPerson, '/name/<string:name_of_person>')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

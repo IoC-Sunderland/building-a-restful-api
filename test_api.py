@@ -9,10 +9,9 @@ import requests
 BASE_URL = "http://127.0.0.1:5000"
 
 
-# Let's try sending some invalid data to RouteOne
-# Notice we are sending an invalid data type "age" argument here (str):
+# POST Request
 response = requests.post(
-    BASE_URL, data={"name":"sue", "age": "45"})
+    BASE_URL + "/name/sue", {"name": "sue", "age": "45", "fav_food": "chips"})
 print(response.text)
 
 # Expected response
@@ -20,6 +19,30 @@ print(response.text)
 # {
 #    "name": "sue",
 #    "age": 45,
-#    "fav_food": null
+#    "fav_food": "chips"
 # }
-#
+
+
+# GET request
+response = requests.get(BASE_URL)
+print(response.text)
+
+# Expected Response
+
+# {
+#    "sue": {
+#        "name": "sue",
+#        "age": 45,
+#        "fav_food": "chips"
+#    }
+# }
+
+input()
+
+# GET request with persons name that DOES NOT exist - will cause KeyError
+response = requests.get(BASE_URL + "/name/bob")
+print(response.text)
+
+# Expected Response
+
+# KeyError: 'bob'
