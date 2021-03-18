@@ -17,6 +17,9 @@ This project builds up a simple RESTful API over several commits.
 #### Install dependencies
 ```pip install -r requirements.txt ```
 
+#### Rewind to intial commit
+```git checkout 4569c42```
+
 #### Run application
 ```python app.py```
 
@@ -24,3 +27,10 @@ This project builds up a simple RESTful API over several commits.
 ```python test_api.py```
 
 Try it out! :thumbsup:
+
+#### Checkout second commit
+```git checkout 283254c```
+
+Try it out again! :thumbsup: :thumbsup:
+
+###### And repeat...
