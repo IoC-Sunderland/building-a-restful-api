@@ -8,48 +8,19 @@ import requests
 
 BASE_URL = "http://127.0.0.1:5000"
 
-# Issue a GET Request to RouteOne
-response = requests.get(BASE_URL)
 
-# Check response is as expected
-print(response.text)
-
-# Expected response
-#
-# {
-#    "data": "RouteOne: GET"
-# }
-#
-
-# Let's try sending some data to RouteOne
+# Now we have implemented the argument parser in app.py
+# let's try sending some incomplete data to RouteOne
+# Notice we are not sending a "name" argument here:
 response = requests.post(
-    BASE_URL, data={"name": "jim", "age": 90, "fav_food": 'crackers'})
-print(response.text)
-
-# Expected response
-#
-# {
-#    "name": "jim",
-#    "age": "90",
-#    "fav_food": "crackers"
-# }
-#
-
-# Let's try sending some more data to RouteOne
-response = requests.post(
-    BASE_URL, data={"name": "sue", "age": 45, "fav_food": 'bread'})
+    BASE_URL, data={"age": 45, "fav_food": 'bread'})
 print(response.text)
 
 # Expected response
 
 # {
-#    "name": "jim",
-#    "age": "90",
-#    "fav_food": "crackers"
+#    "message": {
+#        "name": "Name of person required"
+#    }
 # }
 #
-# {
-#    "name": "sue",
-#    "age": "45",
-#    "fav_food": "bread"
-# }
