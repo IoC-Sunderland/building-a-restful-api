@@ -33,4 +33,52 @@ Try it out! :thumbsup:
 
 Try it out again! :thumbsup: :thumbsup:
 
-###### And repeat...
+<br>
+
+## Commit details
+
+---
+***Initial Commit:*** Project Start \
+***Commit SHA:*** ```4569c42``` \
+***Description:*** Boilerplate code to setup Flask RESTful API including:
+
+***One Resource*** \
+***One Route*** 
+
+---
+***Second Commit:*** Added test_api.py to test API and pip installed requests library \
+***Commit SHA:*** ```283254c``` \
+***Description:*** Added test_api.py to test API and pip installed requests library
+
+---
+***Third Commit:*** Added a POST method \
+***Commit SHA:*** ```382a2bf``` \
+***Description:*** Added a POST method to RouteOne resource. No data is being sent at this time.
+
+---
+***Fourth Commit:*** Sending data to POST method \
+***Commit SHA:*** ```1ba0b39``` \
+***Description:*** Sending some form data to the POST method and then returning it back.
+
+---
+
+***Fifth Commit:*** Argument Parsing \
+***Commit SHA:*** ```ebf9082``` \
+***Description:*** Implementing an argument parser to check data is complete.
+
+---
+***Sixth Commit:*** Invalid arguments \
+***Commit SHA:*** ```5ab57f8``` \
+***Description:*** Sending invalid data types where mandatory arguments have been defined using argument parser.
+
+---
+***Seventh Commit:*** More argument parsing \
+***Commit SHA:*** ```f02d9cd``` \
+***Description:*** Here we have provided a string argument for age which is parsed fine as it can be converted to int e.g. “45” can be parsed to 45. Also, “fav_food” argument can be omitted since it is not required by parser ```(required=False)``` and so is stored in dictionary as null.
+
+---
+***Eighth Commit:*** String arguments \
+***Commit SHA:*** ```6d68025``` \
+Description: Here we pass string arguments to POST and GET methods to add/retrieve users by name.
+
+---
