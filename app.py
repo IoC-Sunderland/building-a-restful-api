@@ -20,6 +20,10 @@ parser = reqparse.RequestParser()
 # Specify mandatory arguments by adding arguments to routes
 parser.add_argument(
     'name', type=str, help='Name of person required', required=True)
+parser.add_argument(
+    'age', type=int, help='Age of person is required', required=True)
+parser.add_argument(
+    'fav_food', type=str, help='Favourite food of person', required=False)
 
 
 ## Resources ##

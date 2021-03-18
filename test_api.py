@@ -9,18 +9,17 @@ import requests
 BASE_URL = "http://127.0.0.1:5000"
 
 
-# Now we have implemented the argument parser in app.py
-# let's try sending some incomplete data to RouteOne
-# Notice we are not sending a "name" argument here:
+# Let's try sending some invalid data to RouteOne
+# Notice we are sending an invalid data type "age" argument here (str):
 response = requests.post(
-    BASE_URL, data={"age": 45, "fav_food": 'bread'})
+    BASE_URL, data={"name":"sue", "age": "foo"})
 print(response.text)
 
 # Expected response
 
 # {
-#    "message": {
-#        "name": "Name of person required"
+#      "message": {
+#        "age": "Age of person is required"
 #    }
 # }
 #
