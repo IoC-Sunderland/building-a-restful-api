@@ -82,3 +82,9 @@ Try it out again! :thumbsup: :thumbsup:
 Description: Here we pass string arguments to POST and GET methods to add/retrieve users by name.
 
 ---
+
+***Ninth Commit:*** Added DynamoDB for data persistance \
+***Commit SHA:*** ```225eb54``` \
+Description: Here we have added DynamoDB integration using the AWS SDK for Python (boto3) and we have included some example uses.
+
+---
