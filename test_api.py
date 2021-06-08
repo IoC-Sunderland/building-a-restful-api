@@ -5,44 +5,41 @@ Note: Ensure Flask server is running on http://127.0.0.1:5000/
 """
 
 import requests
+import simplejson as json
 
 BASE_URL = "http://127.0.0.1:5000"
 
-
-# POST Request
-response = requests.post(
-    BASE_URL + "/name/sue", {"name": "sue", "age": "45", "fav_food": "chips"})
-print(response.text)
-
-# Expected response
-
-# {
-#    "name": "sue",
-#    "age": 45,
-#    "fav_food": "chips"
-# }
-
-
 # GET request
 response = requests.get(BASE_URL)
+
 print(response.text)
 
 # Expected Response
 
-# {
-#    "sue": {
-#        "name": "sue",
-#        "age": 45,
-#        "fav_food": "chips"
+# [
+#    {
+#        'fav_food': 'Toast',
+#        'person-name': 'Bob',
+#        'age': '44'
 #    }
-# }
+# ]
 
-input()
 
-# GET request with persons name that DOES NOT exist - will cause KeyError
-response = requests.get(BASE_URL + "/name/bob")
+# GET a specific item/person
+response = requests.get(BASE_URL + "/name/Bob")
+print(response.text)
+
+
+# CREATE a new item
+response = requests.post(BASE_URL + "/name/sue", {"name": "sue", "age": "45", "fav_food": "chips"})
+print(response.status_code)
 print(response.text)
 
 # Expected Response
 
-# KeyError: 'bob'
+# 200
+# "Person added!"
+
+
+# DELETE an item
+# ???

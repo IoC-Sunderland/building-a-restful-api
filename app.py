@@ -4,11 +4,15 @@
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse, abort
 
+# boto3 imports
+import boto3
+import botocore.exceptions
+
+# Create the dynamodb resource
+dynamodb = boto3.resource('dynamodb')
 
 app = Flask(__name__)
 api = Api(app)
-
-people = {}
 
 ##
 # Argument Parsing
@@ -29,19 +33,47 @@ parser.add_argument(
 ## Resources ##
 class GetAllPeople(Resource):
     def get(self):
-        return people
+        # Get table
+        try:
+            TABLE = dynamodb.Table('people')
+            ALL_PEOPLE = TABLE.scan()
+            print(ALL_PEOPLE)
+            return ALL_PEOPLE['Items']
+        except:
+            return 'No table found!'
 
 
 class GetAPerson(Resource):
     def get(self, name_of_person):
-        return people[name_of_person]
+        # Get specific item from a table
+        try:
+            TABLE = dynamodb.Table('people')
+            PERSON = TABLE.get_item(
+                Key={
+                    'person-name': 'Bob'
+                }
+            )
+            return PERSON['Item']
+        except:
+            return 'No person with that name found!'
 
 
 class AddPerson(Resource):
     def post(self, name_of_person):
         args = parser.parse_args()
-        people[name_of_person] = args
-        return people[name_of_person]
+        # Get specific item from a table
+        try:
+            TABLE = dynamodb.Table('people')
+            TABLE.put_item(
+                Item={
+                    'person-name': args['name'],
+                    'age': args['age'],
+                    'fav_food': args['fav_food']
+                }
+            )
+            return 'Person added!'
+        except:
+            return 'Person not added!'
 
 
 ## API Routing ##
