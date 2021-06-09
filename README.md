@@ -88,3 +88,9 @@ Description: Here we pass string arguments to POST and GET methods to add/retrie
 Description: Here we have added DynamoDB integration using the AWS SDK for Python (boto3) and we have included some example uses.
 
 ---
+
+***Tenth Commit:*** Added Lambda invocation
+***Commit SHA:*** ```0b2b8a8``` \
+Description: Added Lambda invocation to get optimal heart rate range for exercise.
+
+---
