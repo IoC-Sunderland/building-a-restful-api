@@ -1,8 +1,9 @@
 """A very simple RESTful API example
 """
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Api, Resource, reqparse, abort
+import json
 
 # boto3 imports
 import boto3
@@ -10,6 +11,9 @@ import botocore.exceptions
 
 # Create the dynamodb resource
 dynamodb = boto3.resource('dynamodb')
+
+# Create the Lambda client - Note: Not a resource (as we used for DynamoDB) but a client
+lambda_client = boto3.client('lambda')
 
 app = Flask(__name__)
 api = Api(app)
@@ -76,10 +80,25 @@ class AddPerson(Resource):
             return 'Person not added!'
 
 
+class GetOptimalHeartRateForExercise(Resource):
+    def post(self, age):
+        try:
+            payload = {"age":age}
+            # Call the userHeartRate Lambda
+            result = lambda_client.invoke(FunctionName='userHeartRate',
+                        InvocationType='RequestResponse',                                      
+                        Payload=json.dumps(payload))
+            range = result['Payload'].read()      
+            api_response = json.loads(range)               
+            return jsonify(api_response)
+        except:
+            return "No lambda function found!"  
+
 ## API Routing ##
 api.add_resource(GetAllPeople, '/')
 api.add_resource(GetAPerson, '/name/<string:name_of_person>')
 api.add_resource(AddPerson, '/name/<string:name_of_person>')
+api.add_resource(GetOptimalHeartRateForExercise, '/heartrate/<int:age>')
 
 
 if __name__ == "__main__":
