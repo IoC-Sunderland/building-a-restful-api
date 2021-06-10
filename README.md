@@ -94,3 +94,9 @@ Description: Here we have added DynamoDB integration using the AWS SDK for Pytho
 Description: Added Lambda invocation to get optimal heart rate range for exercise.
 
 ---
+
+***Eleventh Commit:*** Added S3 integration \
+***Commit SHA:*** ```0ed94aa``` \
+Description: Added S3 integration that fetches a .pdf file that gives inormation on heart rates
+
+---
