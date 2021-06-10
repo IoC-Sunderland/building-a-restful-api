@@ -3,7 +3,7 @@ This project builds up a simple RESTful API over several commits.
 
 ## Architecture
 
-<img style="width: 55vw; min-width: 330px;" size=src="RESTful Service.png">
+<img style="width: 55vw; min-width: 330px;" src="RESTful Service.png">
 
 
 ## Running the project
