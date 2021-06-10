@@ -1,6 +1,10 @@
 # Building a RESTful API
 This project builds up a simple RESTful API over several commits.
 
+## Architecture
+
+![Hybrid/AWS Architecture](RESTful Service.png)
+
 ## Running the project
 
 #### Clone the repo
