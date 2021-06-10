@@ -3,7 +3,8 @@ This project builds up a simple RESTful API over several commits.
 
 ## Architecture
 
-![Hybrid/AWS Architecture](RESTful Service.png)
+<img style="float: left;" src="RESTful Service.png">
+
 
 ## Running the project
 
