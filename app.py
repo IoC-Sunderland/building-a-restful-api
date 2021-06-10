@@ -15,6 +15,9 @@ dynamodb = boto3.resource('dynamodb')
 # Create the Lambda client - Note: Not a resource (as we used for DynamoDB) but a client
 lambda_client = boto3.client('lambda')
 
+# Create the S3 client
+s3 = boto3.client('s3')
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -83,22 +86,37 @@ class AddPerson(Resource):
 class GetOptimalHeartRateForExercise(Resource):
     def post(self, age):
         try:
-            payload = {"age":age}
+            payload = {"age": age}
             # Call the userHeartRate Lambda
             result = lambda_client.invoke(FunctionName='userHeartRate',
-                        InvocationType='RequestResponse',                                      
-                        Payload=json.dumps(payload))
-            range = result['Payload'].read()      
-            api_response = json.loads(range)               
+                                          InvocationType='RequestResponse',
+                                          Payload=json.dumps(payload))
+            range = result['Payload'].read()
+            api_response = json.loads(range)
             return jsonify(api_response)
         except:
-            return "No lambda function found!"  
+            return "No lambda function found!"
+
+
+class GetHeartRateInfoPDF(Resource):
+    def get(self):
+        try:
+            # Get the .pdf from S3
+            s3.download_file('ioc-flask-api-bucket',
+                             'your-heart-rate-is23.pdf',
+                             'heart-rate-info.pdf')
+            
+            return {"pdfdownloaded": "Yes"}, 200
+        except:
+            return {"pdfdownloaded": "No"}, 404
+
 
 ## API Routing ##
 api.add_resource(GetAllPeople, '/')
 api.add_resource(GetAPerson, '/name/<string:name_of_person>')
 api.add_resource(AddPerson, '/name/<string:name_of_person>')
 api.add_resource(GetOptimalHeartRateForExercise, '/heartrate/<int:age>')
+api.add_resource(GetHeartRateInfoPDF, '/heartrateinfopdf/')
 
 
 if __name__ == "__main__":
